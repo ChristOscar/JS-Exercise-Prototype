@@ -109,7 +109,7 @@ Car.prototype.drive = function(distance){
   if (distance > milesD){
     this.odometer += milesD; // dive till the tank is 0
     this.tank = 0; // When tank = 0, stop
-    console.log(`I drove ${this.odometer} miles`);
+    console.log(`I ran out of fuel at ${this.odometer} miles`);
   }
   
 }
