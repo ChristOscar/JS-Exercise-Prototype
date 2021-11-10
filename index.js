@@ -39,11 +39,39 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-  
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+}
+
+Person.prototype.eat = function(edible){
+  if(this.stomach.length < 10 ){
+    this.stomach.push(edible);
+  }
+}
+
+Person.prototype.poop = function(){
+  this.stomach = [];
+}
+
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`
 }
 
 
+const ben = new Person('Bennett', 28);
+
+
+console.log(ben.toString());
+
+ben.eat('🍔');
+
+console.log(ben.stomach);
+
+ben.poop();
+
+console.log(ben.stomach);
 
 
 
@@ -63,9 +91,44 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+}
+
+Car.prototype.fill = function(gallons){
+  this.tank += gallons
+  // console.log(this.tank);
+}
+
+Car.prototype.drive = function(distance){
+  let milesD = this.tank * this.milesPerGallon; // Get how many miles would be in tank
+
+  if (distance > milesD){
+    this.odometer += milesD; // dive till the tank is 0
+    this.tank = 0; // When tank = 0, stop
+    console.log(`I drove ${this.odometer} miles`);
+  }
   
 }
+
+Car.prototype.toString = function(){
+  return `${this.model}, ${this.milesPerGallon}`
+}
+
+const lexus = new Car('Lexus IS350', 26);
+
+console.log(lexus.toString());
+
+lexus.fill(30);
+
+console.log(lexus.tank);
+
+console.log(lexus.drive(30));
+
+
 
 
 /*
@@ -75,8 +138,15 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(attributes) {
+  Person.call(this, attributes); // inheriting all of the keys from Person
+  this.favoriteToy = attributes.favoriteToy; // this is a special key for the Baby
+}
+
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function() {
+  return "Playing with " + this.favoriteToy;
 }
 
 
