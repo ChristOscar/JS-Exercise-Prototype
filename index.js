@@ -157,10 +157,10 @@ console.log(ella.play());
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1.  When used in the global scope, 'this' refers to the top-level hosting object (window, application, etc)
+  2.  When an object method is called, 'this' always refers to that object
+  3.  You can explicitly set what 'this' refers to by using 'call' and 'apply'
+  4.  When creating an object with 'new', 'this' refers to the newly created object
 */
 
 
