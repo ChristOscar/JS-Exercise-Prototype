@@ -138,17 +138,21 @@ console.log(lexus.drive(30));
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby(attributes) {
-  Person.call(this, attributes); // inheriting all of the keys from Person
-  this.favoriteToy = attributes.favoriteToy; // this is a special key for the Baby
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age, favoriteToy); // inheriting all of the keys from Person
+  this.favoriteToy = favoriteToy; // this is a special key for the Baby
 }
 
 Baby.prototype = Object.create(Person.prototype);
 
 Baby.prototype.play = function() {
-  return "Playing with " + this.favoriteToy;
+  return `${this.name},age ${this.age} loves to play with ${this.favoriteToy}`;
 }
 
+
+const ella = new Baby('Ella', 1, 'trains');
+
+console.log(ella.play());
 
 /* 
   TASK 4
